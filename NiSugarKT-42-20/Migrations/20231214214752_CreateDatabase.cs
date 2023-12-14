@@ -33,7 +33,7 @@ namespace NiSugarKT_42_20.Migrations
                     c_student_lastname = table.Column<string>(type: "nvarchar(max)", maxLength: 100, nullable: false, comment: "Фамилия студента"),
                     c_student_middlename = table.Column<string>(type: "nvarchar(max)", maxLength: 100, nullable: false, comment: "Отчество студента"),
                     f_group_id = table.Column<int>(type: "int", nullable: false, comment: "Идентификатор группы"),
-                    StudentExist = table.Column<int>(type: "int", nullable: false)
+                    StudentExist = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

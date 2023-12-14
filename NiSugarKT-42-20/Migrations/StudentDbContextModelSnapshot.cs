@@ -80,8 +80,8 @@ namespace NiSugarKT_42_20.Migrations
                         .HasColumnName("c_student_middlename")
                         .HasComment("Отчество студента");
 
-                    b.Property<int>("StudentExist")
-                        .HasColumnType("int");
+                    b.Property<bool>("StudentExist")
+                        .HasColumnType("bit");
 
                     b.HasKey("StudentId")
                         .HasName("pk_cd_student_student_id");

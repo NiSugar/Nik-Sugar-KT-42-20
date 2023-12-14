@@ -11,7 +11,7 @@ using NiSugarKT_42_20.Database;
 namespace NiSugarKT_42_20.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20231214161934_CreateDatabase")]
+    [Migration("20231214214752_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -83,8 +83,8 @@ namespace NiSugarKT_42_20.Migrations
                         .HasColumnName("c_student_middlename")
                         .HasComment("Отчество студента");
 
-                    b.Property<int>("StudentExist")
-                        .HasColumnType("int");
+                    b.Property<bool>("StudentExist")
+                        .HasColumnType("bit");
 
                     b.HasKey("StudentId")
                         .HasName("pk_cd_student_student_id");
