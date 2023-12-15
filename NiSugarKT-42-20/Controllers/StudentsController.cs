@@ -26,5 +26,13 @@ namespace NiSugarKT_42_20.Controllers
 
             return Ok(students);
         }
+
+        [HttpPost("GetStudentsByExist")]
+        public async Task<IActionResult> GetStudentsByExistAsync(StudentExistFilter filter, CancellationToken cancellationToken = default)
+        {
+            var students = await _studentService.GetStudentsByExistAsync(filter, cancellationToken);
+
+            return Ok(students);
+        }
     }
 }
