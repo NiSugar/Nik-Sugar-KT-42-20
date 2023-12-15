@@ -2,6 +2,7 @@ using NLog;
 using NLog.Web;
 using Microsoft.EntityFrameworkCore;
 using NiSugarKT_42_20.Database;
+using NiSugarKT_42_20.Middlewares;
 using static NiSugarKT_42_20.ServiceExtensions.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,9 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
+
     app.UseAuthorization();
     app.MapControllers();
     app.Run();
