@@ -34,5 +34,13 @@ namespace NiSugarKT_42_20.Controllers
 
             return Ok(students);
         }
+
+        [HttpPost("GetStudentsByFIO")]
+        public async Task<IActionResult> GetStudentsByFIOAsync(StudentFIOFilter filter, CancellationToken cancellationToken = default)
+        {
+            var students = await _studentService.GetStudentsByFIOAsync(filter, cancellationToken);
+
+            return Ok(students);
+        }
     }
 }
