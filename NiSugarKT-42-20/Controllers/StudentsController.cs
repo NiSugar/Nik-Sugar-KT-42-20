@@ -31,6 +31,14 @@ namespace NiSugarKT_42_20.Controllers
             return Ok(students);
         }
 
+        [HttpPost("GetStudentsByGroupID")]
+        public async Task<IActionResult> GetStudentsByGroupIDAsync(StudentGroupFiltersID filter, CancellationToken cancellationToken = default)
+        {
+            var students = await _studentService.GetStudentsByGroupIDAsync(filter, cancellationToken);
+
+            return Ok(students);
+        }
+
         [HttpPost("GetStudentsByExist")]
         public async Task<IActionResult> GetStudentsByExistAsync(StudentExistFilter filter, CancellationToken cancellationToken = default)
         {
@@ -48,6 +56,19 @@ namespace NiSugarKT_42_20.Controllers
         }
 
         // ДОБАВЛЕНИЕ СТУДЕНТА
+        //[HttpPost("AddStudent")]
+        //public IActionResult CreateStudent([FromBody] Student student)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    _context.Add(student);
+        //    _context.SaveChanges();
+        //    return Ok(student);
+        //}
+
         [HttpPost("AddStudent")]
         public IActionResult CreateStudent([FromBody] Student student)
         {
@@ -56,10 +77,22 @@ namespace NiSugarKT_42_20.Controllers
                 return BadRequest(ModelState);
             }
 
+            // Проверка существования группы с указанным ID
+            var existingGroup = _context.Groups.FirstOrDefault(g => g.GroupId == student.GroupId);
+            if (existingGroup == null)
+            {
+                // Если группа не существует, возвращаем ошибку или предлагаем коррекцию
+                return BadRequest("Указанная группа не существует. Пожалуйста, введите корректный ID группы.");
+            }
+
+            // Связываем студента с существующей группой и добавляем в контекст
+            student.Group = existingGroup;
             _context.Add(student);
             _context.SaveChanges();
+
             return Ok(student);
         }
+
 
         // РЕДАКТИРОВАНИЕ СТУДЕНТА
         [HttpPut("EditStudent")]

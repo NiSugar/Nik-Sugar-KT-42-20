@@ -11,7 +11,7 @@ using NiSugarKT_42_20.Database;
 namespace NiSugarKT_42_20.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20231214214752_CreateDatabase")]
+    [Migration("20240111125944_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -27,12 +27,9 @@ namespace NiSugarKT_42_20.Migrations
             modelBuilder.Entity("NiSugarKT_42_20.Models.Group", b =>
                 {
                     b.Property<int>("GroupId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("group_id")
                         .HasComment("Идентификатор записи группы");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
 
                     b.Property<string>("GroupName")
                         .IsRequired()

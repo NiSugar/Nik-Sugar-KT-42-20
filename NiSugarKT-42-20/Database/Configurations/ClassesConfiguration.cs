@@ -1,38 +1,38 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using NiSugarKT_42_20.Database.Helpers;
 using NiSugarKT_42_20.Models;
 
 namespace NiSugarKT_42_20.Database.Configurations
 {
-    public class GroupConfiguration : IEntityTypeConfiguration<Group>
+    public class ClassesConfiguration : IEntityTypeConfiguration<Classes>
     {
-        private const string TableName = "cd_group";
+        private const string TableName = "cd_classes";
 
-        public void Configure(EntityTypeBuilder<Group> builder)
+        public void Configure(EntityTypeBuilder<Classes> builder)
         {
             //Задаем первичный ключ
             builder
-                .HasKey(p => p.GroupId)
-                .HasName($"pk_{TableName}_group_id");
+                .HasKey(p => p.ClassesId)
+                .HasName($"pk_{TableName}_classes_id");
 
             //Для целочисленного первичного ключа задаем автогенерацию (к каждой новой записи будет добавлять +1)
-            builder.Property(p => p.GroupId)
-                    .ValueGeneratedNever();
+            builder.Property(p => p.ClassesId)
+                    .ValueGeneratedOnAdd();
 
             //Расписываем как будут называться колонки в БД, а так же их обязательность и тд
-            builder.Property(p => p.GroupId)
-                .HasColumnName("group_id")
-                .HasComment("Идентификатор записи группы");
+            builder.Property(p => p.ClassesId)
+                .HasColumnName("lesson_id")
+                .HasComment("Идентификатор записи предмета");
 
             //HasComment добавит комментарий, который будет отображаться в СУБД (добавлять по желанию)
-            builder.Property(p => p.GroupName)
+            builder.Property(p => p.ClassesName)
                 .IsRequired()
-                .HasColumnName("c_group_name")
+                .HasColumnName("c_lessonname")
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
-                .HasComment("Название группы");
+                .HasComment("Название предмета");
 
-            builder.ToTable(TableName);
+
         }
     }
 }

@@ -14,8 +14,7 @@ namespace NiSugarKT_42_20.Migrations
                 name: "cd_group",
                 columns: table => new
                 {
-                    group_id = table.Column<int>(type: "int", nullable: false, comment: "Идентификатор записи группы")
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    group_id = table.Column<int>(type: "int", nullable: false, comment: "Идентификатор записи группы"),
                     c_group_name = table.Column<string>(type: "nvarchar(max)", maxLength: 100, nullable: false, comment: "Название группы")
                 },
                 constraints: table =>

@@ -8,6 +8,7 @@ namespace NiSugarKT_42_20.Interfaces.StudentInterfaces
     public interface IStudentService
     {
         public Task<Student[]> GetStudentsByGroupAsync(StudentGroupFilter filter, CancellationToken cancellationToken);
+        public Task<Student[]> GetStudentsByGroupIDAsync(StudentGroupFiltersID filter, CancellationToken cancellationToken);
         public Task<Student[]> GetStudentsByExistAsync(StudentExistFilter filter, CancellationToken cancellationToken);
         public Task<Student[]> GetStudentsByFIOAsync(StudentFIOFilter filter, CancellationToken cancellationToken);
     }
@@ -25,6 +26,21 @@ namespace NiSugarKT_42_20.Interfaces.StudentInterfaces
 
             return students;
         }
+
+        //public Task<Student[]> GetStudentsByGroupIDAsync(StudentGroupFilter filter, CancellationToken cancellationToken = default)
+        //{
+        //    var students = _dbContext.Set<Student>().Where(w => w.GroupId.GroupId == filter.GroupId).ToArrayAsync(cancellationToken);
+
+        //    return students;
+        //}
+
+        public Task<Student[]> GetStudentsByGroupIDAsync(StudentGroupFiltersID filter, CancellationToken cancellationToken = default)
+        {
+            var students = _dbContext.Set<Student>().Where(w => w.Group.GroupId == filter.GroupId).ToArrayAsync(cancellationToken);
+
+            return students;
+        }
+
         public Task<Student[]> GetStudentsByExistAsync(StudentExistFilter filter, CancellationToken cancellationToken = default)
         {
             var students = _dbContext.Set<Student>().Where(w => w.StudentExist == filter.Exist).ToArrayAsync(cancellationToken);

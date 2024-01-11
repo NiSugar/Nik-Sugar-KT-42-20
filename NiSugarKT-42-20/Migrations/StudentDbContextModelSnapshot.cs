@@ -24,12 +24,9 @@ namespace NiSugarKT_42_20.Migrations
             modelBuilder.Entity("NiSugarKT_42_20.Models.Group", b =>
                 {
                     b.Property<int>("GroupId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("group_id")
                         .HasComment("Идентификатор записи группы");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
 
                     b.Property<string>("GroupName")
                         .IsRequired()
